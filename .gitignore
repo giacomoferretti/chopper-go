@@ -1,0 +1,6 @@
+# .gitignore for C, JetBrains and macOS
+.idea
+.DS_Store
+
+# Custom
+.cannotseeme
