@@ -95,13 +95,13 @@ func channelToFrequency(channel int) int {
 	return 0
 }
 
-func parseChannelsString(input string) []int {
+func parseChannelsString(input string) ([]int, error) {
 	ret := make([]int, 0)
 
 	// Remove all non-digits
 	reg, err := regexp.Compile("[^0-9,]+")
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	processedString := reg.ReplaceAllString(input, "")
 
@@ -125,7 +125,7 @@ func parseChannelsString(input string) []int {
 		ret = append(ret, int(value))
 	}
 
-	return ret
+	return ret, nil
 }
 
 func isFlagPassed(name string) bool {
@@ -181,7 +181,7 @@ func main() {
 			})
 		}
 	}
-	channels := parseChannelsString(channelsString)
+	channels, _ := parseChannelsString(channelsString)
 	if len(channels) <= 0 {
 		channels = []int{1, 8, 2, 9, 3, 10, 4, 11, 5, 12, 6, 13, 7}
 	}
@@ -249,6 +249,7 @@ func main() {
 
 		_, err = nlSocket.Execute(nlMessage, nl80211Family.ID, netlink.Request | netlink.Acknowledge)
 		if err != nil {
+			_, _ = fmt.Fprintf(os.Stderr, "Cannot set channel %v\n", channels[idx])
 			_, _ = fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
 			os.Exit(1)
 		}
