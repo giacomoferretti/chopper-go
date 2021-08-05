@@ -80,26 +80,6 @@ func checkMonitorInterface(iface string) (*wifi.Interface, error) {
 	return ifaceFound, nil
 }
 
-func frequencyToChannel(frequency int) int {
-	if frequency == 2484 {
-		return 14
-	} else if frequency == 5935 {
-		return 2
-	} else if frequency < 2484 {
-		return (frequency - 2407) / 5
-	} else if frequency >= 4910 && frequency <= 4980 {
-		return (frequency - 4000) / 5
-	} else if frequency < 5950 {
-		return (frequency - 5000) / 5
-	} else if frequency <= 45000 {
-		return (frequency - 5950) / 5
-	} else if frequency >= 58320 && frequency <= 70200 {
-		return (frequency - 56160) / 2160
-	} else {
-		return 0
-	}
-}
-
 func channelToFrequency(channel int) int {
 	// TODO: Add support for 5GHz
 	if channel <= 0 {
