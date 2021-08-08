@@ -145,7 +145,7 @@ func main() {
 	flag.BoolVarP(&showVersion, "version", "V", false, "show version")
 	flag.StringVarP(&interfaceName, "interface", "i", "", "interface name (must be in monitor mode)")
 	flag.StringVarP(&channelsString, "channels", "c", "", "comma-separated list of channels (default: 1,8,2,9,3,10,4,11,5,12,6,13,7)")
-	flag.IntVarP(&delay, "delay", "d", 200, "delay between each hop")
+	flag.IntVarP(&delay, "delay", "d", 100, "delay between each hop")
 	flag.IntVarP(&timeout, "timeout", "t", 0, "exit the program after X seconds")
 	flag.Parse()
 
