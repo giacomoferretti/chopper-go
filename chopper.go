@@ -19,12 +19,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/mdlayher/genetlink"
-	"github.com/mdlayher/netlink"
-	"github.com/mdlayher/netlink/nlenc"
-	"github.com/mdlayher/wifi"
-	flag "github.com/spf13/pflag"
-	"github.com/xlab/nl80211/nl80211"
 	"log"
 	"os"
 	"os/signal"
@@ -32,21 +26,28 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/mdlayher/genetlink"
+	"github.com/mdlayher/netlink"
+	"github.com/mdlayher/netlink/nlenc"
+	"github.com/mdlayher/wifi"
+	flag "github.com/spf13/pflag"
+	"github.com/xlab/nl80211/nl80211"
 )
 
 var (
-	running = true
-	showHelp bool
-	showVersion bool
-	interfaceName string
+	running        = true
+	showHelp       bool
+	showVersion    bool
+	interfaceName  string
 	channelsString string
-	delay int
-	timeout int
+	delay          int
+	timeout        int
 )
 
 const (
 	ProgramName = "chopper"
-	Version = "1.0.0"
+	Version     = "1.0.0"
 )
 
 func checkMonitorInterface(iface string) (*wifi.Interface, error) {
@@ -89,7 +90,7 @@ func channelToFrequency(channel int) int {
 	if channel == 14 {
 		return 2484
 	} else if channel < 14 {
-		return 2407 + channel * 5
+		return 2407 + channel*5
 	}
 
 	return 0
@@ -137,7 +138,6 @@ func isFlagPassed(name string) bool {
 	})
 	return found
 }
-
 
 func main() {
 	// Command arguments
@@ -247,7 +247,7 @@ func main() {
 			Data: data,
 		}
 
-		_, err = nlSocket.Execute(nlMessage, nl80211Family.ID, netlink.Request | netlink.Acknowledge)
+		_, err = nlSocket.Execute(nlMessage, nl80211Family.ID, netlink.Request|netlink.Acknowledge)
 		if err != nil {
 			_, _ = fmt.Fprintf(os.Stderr, "Cannot set channel %v\n", channels[idx])
 			_, _ = fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)

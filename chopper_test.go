@@ -29,47 +29,47 @@ func TestParseChannelsString(t *testing.T) {
 		output []int
 	}{
 		{
-			name: "correct",
+			name:   "correct",
 			input:  "1,2,3",
 			output: []int{1, 2, 3},
 		},
 		{
-			name: "invalid_value",
+			name:   "invalid_value",
 			input:  "0",
 			output: []int{},
 		},
 		{
-			name: "commas_suffix",
+			name:   "commas_suffix",
 			input:  "1,,",
 			output: []int{1},
 		},
 		{
-			name: "commas_prefix",
+			name:   "commas_prefix",
 			input:  ",,3",
 			output: []int{3},
 		},
 		{
-			name: "words_prefix",
+			name:   "words_prefix",
 			input:  "asd1,2,3",
 			output: []int{1, 2, 3},
 		},
 		{
-			name: "words_suffix",
+			name:   "words_suffix",
 			input:  "1asd,2,3",
 			output: []int{1, 2, 3},
 		},
 		{
-			name: "words_in_between",
+			name:   "words_in_between",
 			input:  "1a,sd2,3",
 			output: []int{1, 2, 3},
 		},
 		{
-			name: "commas_only",
+			name:   "commas_only",
 			input:  ",,",
 			output: []int{},
 		},
 		{
-			name: "spaces",
+			name:   "spaces",
 			input:  "1 2 3",
 			output: []int{123},
 		},
@@ -88,71 +88,71 @@ func TestParseChannelsString(t *testing.T) {
 
 func TestChannelToFrequency(t *testing.T) {
 	tests := []struct {
-		channel  int
+		channel   int
 		frequency int
 	}{
 		{
-			channel: 1,
+			channel:   1,
 			frequency: 2412,
 		},
 		{
-			channel: 2,
+			channel:   2,
 			frequency: 2417,
 		},
 		{
-			channel: 3,
+			channel:   3,
 			frequency: 2422,
 		},
 		{
-			channel: 4,
+			channel:   4,
 			frequency: 2427,
 		},
 		{
-			channel: 5,
+			channel:   5,
 			frequency: 2432,
 		},
 		{
-			channel: 6,
+			channel:   6,
 			frequency: 2437,
 		},
 		{
-			channel: 7,
+			channel:   7,
 			frequency: 2442,
 		},
 		{
-			channel: 8,
+			channel:   8,
 			frequency: 2447,
 		},
 		{
-			channel: 9,
+			channel:   9,
 			frequency: 2452,
 		},
 		{
-			channel: 10,
+			channel:   10,
 			frequency: 2457,
 		},
 		{
-			channel: 11,
+			channel:   11,
 			frequency: 2462,
 		},
 		{
-			channel: 12,
+			channel:   12,
 			frequency: 2467,
 		},
 		{
-			channel: 13,
+			channel:   13,
 			frequency: 2472,
 		},
 		{
-			channel: 14,
+			channel:   14,
 			frequency: 2484,
 		},
 		{
-			channel: 15,
+			channel:   15,
 			frequency: 0,
 		},
 		{
-			channel: -1,
+			channel:   -1,
 			frequency: 0,
 		},
 	}
